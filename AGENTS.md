@@ -20,6 +20,8 @@ If you are an agent: **read this file, then `knowledge/INDEX.md`, then `fit-prof
 | `knowledge/INDEX.md` | Map of every packet and which folder it lives in today |
 | `knowledge/LAYOUT.md` | Target folder layout (do not mass-move binaries unless asked) |
 | `knowledge/corpus.md` | Facts you may use |
+| `knowledge/phases.md` | What is live vs next |
+| `apply-desk/` | Walkthrough tool source (catalog, corpus, fill sheet, packet studio) |
 | `fit-profile.md` | Hard filters and locked decisions (Aug 19, 2026) |
 | `rubric.md` | 0–100 scoring after filters |
 | `job-search-automation-design_1.md` | Architecture: alerts in, judgment in the middle, files out |
@@ -76,9 +78,9 @@ Also: `watchlist`, `dismissed`, `expired`, `archived` (failed hard filters).
 
 ## Tooling that already exists
 
-- **Apply Desk** (Grok app): one-at-a-time walkthrough of each packet — role, fit, CV/CL, checklist, mark submitted.
+- **Apply Desk** (`apply-desk/`): one-at-a-time walkthrough — role, fit, CV/CL, checklist, portal fill sheet, mark submitted. Never auto-submit.
 - **Phase 2:** alert parser + daily digest (HigherEdJobs, Chronicle, HERC).
-- **Phase 3:** Azure AI Foundry agents + browser-assisted ATS fill. Still never auto-submit. SharePoint as file home once chosen.
+- **Phase 3:** Azure AI Foundry agents + browser-assisted ATS fill (stop before attest). SharePoint as file home once chosen.
 
 ## If you are generating a packet
 

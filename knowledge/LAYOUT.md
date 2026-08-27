@@ -11,6 +11,8 @@ knowledge/
   INDEX.md
   LAYOUT.md
   corpus.md
+  phases.md
+apply-desk/          ← walkthrough tool source (not the Word packets)
 materials/
   master/          ← Cv Max Oza.docx, Cl Max Oza.docx, transcript (private)
   templates/       ← Great CV and CL templates

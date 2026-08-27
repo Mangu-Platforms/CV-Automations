@@ -2,6 +2,8 @@
 
 Canonical map of this repo for agents. Original Word files stay where they are until a migrate pass.
 
+Walk packets in **Apply Desk** (`apply-desk/`). Do not auto-submit.
+
 ## Locked config
 
 - `fit-profile.md` — filters, families, geography, drafting policy
