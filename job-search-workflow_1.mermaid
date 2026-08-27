@@ -1,0 +1,37 @@
+%% Higher-ed job search automation — recommended architecture ("Alerts in, judgment in the middle, files out")
+flowchart TD
+  subgraph SRC["SOURCES — push, sanctioned channels"]
+    A1["HigherEdJobs<br/>saved-search email alerts"]
+    A2["Chronicle jobs<br/>email alerts + RSS"]
+    A3["HERC NJ / E-PA / DE<br/>email alerts"]
+    A4["Indeed + LinkedIn alerts<br/>(remote-admin stream)"]
+    A5["Weekly 10-min browser sweep:<br/>SHU · Rutgers · CCM · NJIT portals"]
+  end
+  A1 --> MB["Dedicated mail folder<br/>(inbox rule: 'Job Alerts')"]
+  A2 --> MB
+  A3 --> MB
+  A4 --> MB
+  A2 -.per-search RSS.-> P1
+  A5 -->|manual adds| TRK
+
+  subgraph RUN["DAILY RUN — scheduled task, weekday mornings ~7:00 ET"]
+    P1["Parse alerts / feeds"] --> P2["Normalize + dedupe<br/>canonical key · repost check"]
+    P2 --> P3["Enrich: salary (NJ-mandated),<br/>deadline, campus, job family"]
+    P3 --> P4["Rank vs fit profile<br/>+ suggest CV variant"]
+    P4 --> P5{Route}
+  end
+  MB --> P1
+
+  P5 -->|every item| TRK["Tracker + posting snapshots<br/>(project = canonical store)"]
+  P5 -->|ranked digest| DIG["Daily digest<br/>(email + in-app)"]
+  P5 -->|top tier only| PUSH["Phone push"]
+
+  DIG --> R{"Renee reviews<br/>(~10 min)"}
+  R -->|approve| DR["Draft packet:<br/>CV variant + tailored letter,<br/>one page, PDF-verified"]
+  R -->|dismiss / watchlist| TRK
+  R -->|ratings| FB["Feedback → rubric tuning"]
+  FB -.-> P4
+  DR --> REV["Renee edits & finalizes"]
+  REV --> SUB["Manual submission — never automated"]
+  SUB --> TRK
+  TRK --> REM["Deadline reminders ·<br/>Sunday review: source health,<br/>precision stats, pipeline board"]
